@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components'
 
 
+const Border = styled.div`
+  background: white;
+  height: 24.7vh;
+  width: 24.6671vw;
+`;
+
 const BoardContainer = styled.div`
   background: white;
   height: 75vh;
@@ -9,13 +15,37 @@ const BoardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin:auto;
-`;
 
-
-const Border = styled.div`
-  background: white;
-  height: 25vh;
-  width: 25vw;
+  ${Border}:nth-child(1) {
+    border-right: 0.5vw solid black;
+    border-bottom: 0.5vh solid black;
+  }
+  ${Border}:nth-child(2) {
+    border-right: 0.5vw solid black;
+    border-bottom: 0.5vh solid black;
+  }
+  ${Border}:nth-child(3) {
+    border-bottom: 0.5vh solid black;
+  }
+  ${Border}:nth-child(4) {
+    border-right: 0.5vw solid black;
+    border-bottom: 0.5vh solid black;
+  }
+  ${Border}:nth-child(5) {
+    border-right: 0.5vw solid black;
+    border-bottom: 0.5vh solid black;
+  }
+  ${Border}:nth-child(6) {
+    border-bottom: 0.5vh solid black;
+  }
+  ${Border}:nth-child(7) {
+    border-right: 0.5vw solid black;
+  }
+  ${Border}:nth-child(8) {
+    border-right: 0.5vw solid black;
+  }
+  ${Border}:nth-child(9) {
+  }
 `;
 
 const Empty = styled.div`
@@ -34,7 +64,7 @@ const Triangle = styled.div`
 	height: 0;
 	border-left: 50px solid transparent;
 	border-right: 50px solid transparent;
-	border-bottom: 75px solid #555;
+  border-bottom: 75px solid #555;
 `;
 
 
@@ -44,9 +74,9 @@ export default class Board extends React.Component {
     this.state = {
       boardState: 
       [
-      'circle', 'empty', 'empty',
       'empty', 'empty', 'empty',
-      'empty', 'triangle', 'empty',
+      'empty', 'empty', 'empty',
+      'empty', 'empty', 'empty',
     ],
     winner: null,
     triangleTurn: true
@@ -61,11 +91,11 @@ export default class Board extends React.Component {
         var newState = oldState
         newState[key] = triangleTurn ? 'triangle' : 'circle'
         this.setState({boardState: newState})
+        this.setState({triangleTurn: !triangleTurn})
+        this.CheckWin();
       } else {
         console.log("Not empty");
       }
-      this.setState({triangleTurn: !triangleTurn})
-      this.CheckWin();
     }
   }
 
@@ -98,25 +128,21 @@ export default class Board extends React.Component {
     }
   }
 
-  computerMove = () => {
-    const boardState = this.state.boardState;
-  }
+  // computer oppenent
+  // computerMove = () => {
+  //   const boardState = this.state.boardState;
+  // }
 
-  checkForRow = (boardState) => {
-    for (var i = 0; i > boardState.length; i++) {
-      //CQ = square to be checked
-      const CQ = boardState[i]
-      //check above
-      if (0 < (i - 3) < 8 ){
+  // checkForRow = (boardState) => {
+  //   for (var i = 0; i > boardState.length; i++) {
+  //     //CQ = square to be checked
+  //     const CQ = boardState[i]
+  //     //check above
+  //     if (0 < (i - 3) < 8 ){
         
-      }
-    }
-  }
-
-  handleSubmit  = (event) => {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
+  //     }
+  //   }
+  // }
 
   RenderBox = (box) => {
     switch(box) {
@@ -131,7 +157,6 @@ export default class Board extends React.Component {
 
   render() {
     const {boardState, winner}  = this.state;
-    console.log('boardstate', boardState);
     this.boxes = boardState.map((box, key) =>
       <Border key={key} onClick={() => this.handleMove(key)}>
         {this.RenderBox(box)}
