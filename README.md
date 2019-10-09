@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A tit tac toe game made with react and styled components
 
 ## Available Scripts
 
