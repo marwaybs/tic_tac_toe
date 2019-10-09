@@ -1,4 +1,4 @@
-A tit tac toe game made with react and styled components
+A tic tac toe game made with react and styled components
 
 ## Available Scripts
 
